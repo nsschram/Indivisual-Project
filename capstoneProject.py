@@ -13,26 +13,28 @@ def randomDirectory():
             x = str(random.randint(0,100))
             y = str(random.randint(0,100))
             weight = str(random.randint(0,10))
-            print(f"x = {x} y = {y}")
+            print(f"x = {x} y = {y} weight = {w}")
             writer.writerow({'x': x, 'y': y, 'weight': weight})
     pass
 
-"""
-with open('names.csv', 'w', newline='') as csvfile:
-    fieldnames = ['first_name', 'last_name']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-    writer.writeheader()
-    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
-    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
-    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
-"""
+def readDir():
+    x = []
+    y = []
+    w = []
+    with open('names.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            x.append(row['x'])
+            y.append(row['y'])
+            w.append(row['weight'])
+    return x, y, w
 
 
 
 if __name__ == "__main__":
     randomDirectory()
-
+    x, y, w = readDir()
+    print(f"x = {x} y = {y} weight = {w}")
 
 
 
